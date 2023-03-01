@@ -41,7 +41,10 @@ const deleteGift = (hash) => {
 
 const getGiftByHash = (hash) => {
     const data = db.query('SELECT * FROM gifts WHERE hash = ?', [hash]);
-    return { data };
+    if (data.length) {
+        return data[0];
+    }
+    return null;
 }
 
 const checkGiftHash = (hash) => {
